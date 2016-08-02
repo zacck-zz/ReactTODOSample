@@ -11,6 +11,14 @@ var ToDo = React.createClass({
           {
             id: 2,
             text: 'clean the yard'
+          },
+          {
+            id: 3,
+            text: 'leave mail on porch'
+          },
+          {
+            id: 4,
+            text: 'meh'
           }
         ]
       };

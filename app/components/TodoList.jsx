@@ -3,11 +3,15 @@ var TodoItem = require('TodoItem');
 
 var TodoList = React.createClass({
     render: function() {
+      /*get the props passed in */
       var {todos} = this.props;
+
       var renderTodos = () => {
-        return todo.map((todo) =>{
+        return todos.map((todo) =>{
           return(
-            <TodoItem/>
+            /*Passing an array item to a list*/
+            /*Remember to pass a key when dealing with lists ... << the spread operator*/
+            <TodoItem key={todo.id} {...todo}/>
           );
         })
       };
