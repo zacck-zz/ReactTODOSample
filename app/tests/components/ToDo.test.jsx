@@ -62,7 +62,7 @@ describe('ToDo', () =>{
       text: 'Test Feature',
       completed: true,
       createdAt: 0,
-      completedAt: 2,
+      completedAt: 2
     };
 
     var todoapp = TestUtils.renderIntoDocument(<ToDo/>);
