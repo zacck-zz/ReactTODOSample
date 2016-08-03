@@ -25,7 +25,7 @@ var personTwo  = ['Zacck', 26];
 
 //HI Andrew you are 25
 function greeting(name, age) {
-  return 'Hi ' + name+' you are '+age;
+  return 'Hi ' + name+', you are '+age;
 }
 
 console.log(greeting(...person));

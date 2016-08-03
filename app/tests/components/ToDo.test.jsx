@@ -16,5 +16,14 @@ it('should exist', () => {
 });
 
 //other tests
+it('should add todo to the todo state on hanleaddtodo', () =>{
+  var todotext = 'test text';
+  var todoapp = TestUtils.renderIntoDocument(<ToDo/>);
+  todoapp.setState({todos: []});
+
+  todoapp.handleAddTodo(todotext);
+
+  expect(todoapp.state.todos[0].text).toBe(todotext);
+});
 
 });
