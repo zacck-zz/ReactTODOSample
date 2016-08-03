@@ -19,16 +19,17 @@ it('should exist', () => {
 //use a spy to make sure the method will be called
 it('should call the handleAddTodo if the text is valid', () =>{
   var todoSpy = expect.createSpy();
+  var tdtext = 'my todo';
 
   /*render component*/
   var addtodo = TestUtils.renderIntoDocument(<AddTodo onAddTodo={todoSpy}/>);
   var $element = $(ReactDOM.findDOMNode(addtodo));
 
-  addtodo.refs.todoText.value='my todo';
+  addtodo.refs.todoText.value = tdtext;
   /*find the the form*/
   /*And simulate a submit*/
   TestUtils.Simulate.submit($element.find('form')[0]);
-  expect(todoSpy).toHaveBeenCalled();
+  expect(todoSpy).toHaveBeenCalledWith(tdtext);
 });
 
 //use a spy to make sure the method will be called
