@@ -1,5 +1,10 @@
 var React = require('react');
+
+//modules we need
 var TodoList = require('TodoList');
+var AddTodo = require('AddTodo');
+
+//actual component
 var ToDo = React.createClass({
     getInitialState: function() {
       return {
@@ -23,11 +28,16 @@ var ToDo = React.createClass({
         ]
       };
     },
+    /*handler for new Items*/
+    handleAddTodo: function(text) {
+      alert('new todo: '+ text);
+    },
     render: function() {
       var {todos} = this.state;
        return(
                <div>
                 <TodoList todos={todos}/>
+                <AddTodo onAddTodo={this.handleAddTodo}/>
                </div>
              );
     }
