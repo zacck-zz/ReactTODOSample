@@ -27,7 +27,8 @@ module.exports =  {
     modulesDirectories:[
       'node_modules',
       './app/components',
-      './app/components/forms'
+      './app/components/forms',
+      './app/api'
     ],
     alias: {
       applicationStyles: 'app/styles/app.scss',
