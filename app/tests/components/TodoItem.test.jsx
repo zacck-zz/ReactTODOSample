@@ -11,10 +11,26 @@ var TodoItem = require('TodoItem');
 //Perform assertions
 describe('TodoItem', () =>{
 
-it('should exist', () => {
-   expect(TodoItem).toExist();
-});
+  it('should exist', () => {
+     expect(TodoItem).toExist();
+  });
 
-//other tests
+  //other tests
+  it('should call onToggle prop with id on click', () => {
+    var todoData = {
+      id: 199,
+      text: 'write todo test jsx ',
+      completed: true
+    };
+
+    var todoSpy = expect.createSpy();
+    var todo = TestUtils.renderIntoDocument(<TodoItem {...todoData} onToggle={todoSpy}/>);
+
+    //simulate click
+    var $element = $(ReactDOM.findDOMNode(todo));
+    TestUtils.Simulate.click($element[0]);
+    expect(todoSpy).toHaveBeenCalledWith(199);
+  })
+
 
 });

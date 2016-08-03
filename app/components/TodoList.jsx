@@ -11,7 +11,7 @@ var TodoList = React.createClass({
           return(
             /*Passing an array item to a list*/
             /*Remember to pass a key when dealing with lists ... << the spread operator*/
-            <TodoItem key={todo.id} {...todo}/>
+            <TodoItem key={todo.id} {...todo} onToggle={this.props.onToggle}/>
           );
         })
       };
