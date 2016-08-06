@@ -32,6 +32,7 @@ module.exports =  {
     ],
     alias: {
       applicationStyles: 'app/styles/app.scss',
+      actions: 'app/actions/actions.jsx'
     },
     //files we want to process
     extensions: ['', '.js', '.jsx']
