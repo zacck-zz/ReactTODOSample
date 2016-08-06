@@ -1,3 +1,6 @@
+/*
+*Actions perform changes
+*/
 export var setSearchText =  (searchText) => {
   return {
     searchText,
@@ -14,7 +17,7 @@ export var addTodo = (text) => {
   };
 };
 
-export var setShowCompleted = (checked) => {
+export var setShowCompleted = () => {
   return{
     type:'TOGGLE_SHOW_COMPLETED',
   };
