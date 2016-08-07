@@ -1,6 +1,8 @@
 //import react
 var React = require('react');
 var ReactDOM = require('react-dom');
+//Provider ..lets you provide your store to children components
+var {Provider} = require('react-redux');
 //ES6 Destructuting syntax
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 //add components
@@ -29,6 +31,8 @@ $(document).foundation();
 require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
-  <ToDo/>,
+  <Provider store={store}>
+    <ToDo/>
+  </Provider>,
   document.getElementById('app')
 );

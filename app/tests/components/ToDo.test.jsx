@@ -3,8 +3,13 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var expect = require('expect');
 var $ = require('jQuery');
-var TestUtils = require('react-addons-test-utils')
+var TestUtils = require('react-addons-test-utils');
+var {Provider} = require('react-redux');
 
+//config store
+var configureStore = require('configureStore');
+
+import TodoList from 'TodoList';
 //actual component we need to render
 var ToDo = require('ToDo');
 
@@ -15,64 +20,21 @@ describe('ToDo', () =>{
      expect(ToDo).toExist();
   });
 
-  //other tests
-  it('should add todo to the todo state on hanleaddtodo', () =>{
-    var todotext = 'test text';
-    var todoapp = TestUtils.renderIntoDocument(<ToDo/>);
-    todoapp.setState({todos: []});
+  it('should render TodoList', () => {
+    var store = configureStore.configure();
 
-    todoapp.handleAddTodo(todotext);
+    var provider = TestUtils.renderIntoDocument(
+      <Provider store={store}>
+        <ToDo/>
+      </Provider>
+    );
 
-    expect(todoapp.state.todos[0].text).toBe(todotext);
+    var todoApp = TestUtils.scryRenderedComponentsWithType(provider, ToDo)[0];
+    var todoList = TestUtils.scryRenderedComponentsWithType(todoApp, TodoList);
 
-    //expect that createdAt field to be a number
-    expect(todoapp.state.todos[0].createdAt).toBeA('number');
+    expect(todoList.length).toEqual(1);
+
   });
 
-  it('should toggle completed value when handletoggle is called', () =>{
-    //placeholder todo
-    var todoData = {
-      id:11,
-      text: 'Test Feature',
-      completed: false,
-      createdAt: 0,
-      completedAt: undefined
-    };
 
-    var todoapp = TestUtils.renderIntoDocument(<ToDo/>);
-
-    todoapp.setState({
-      todos: [todoData]
-    });
-
-    //check first item has completed value of false
-    expect(todoapp.state.todos[0].completed).toBe(false);
-    //call handletoggle with id
-    todoapp.handleToggle(11);
-    //verify that value changed
-    expect(todoapp.state.todos[0].completed).toBe(true);
-
-    expect(todoapp.state.todos[0].createdAt).toBeA('number');
-  });
-
-  it('should make make completedAt to be undefined', () => {
-    //placeholder todo
-    var todoData = {
-      id:11,
-      text: 'Test Feature',
-      completed: true,
-      createdAt: 0,
-      completedAt: 2
-    };
-
-    var todoapp = TestUtils.renderIntoDocument(<ToDo/>);
-
-    todoapp.setState({
-      todos: [todoData]
-    });
-
-    todoapp.handleToggle(11);
-
-    expect(todoapp.state.todos[0].completedAt).toNotBeA('number');
-  })
 });

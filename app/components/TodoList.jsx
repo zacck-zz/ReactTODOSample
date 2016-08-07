@@ -1,7 +1,10 @@
 var React = require('react');
-var TodoItem = require('TodoItem');
+//goes with the provider
+var {connect} = require('react-redux');
+//modules needed
+import TodoItem from 'TodoItem';
 
-var TodoList = React.createClass({
+export var TodoList = React.createClass({
     render: function() {
       /*get the props passed in */
       var {todos} = this.props;
@@ -16,7 +19,7 @@ var TodoList = React.createClass({
           return(
             /*Passing an array item to a list*/
             /*Remember to pass a key when dealing with lists ... << the spread operator*/
-            <TodoItem key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+            <TodoItem key={todo.id} {...todo}/>
           );
         })
       };
@@ -27,4 +30,14 @@ var TodoList = React.createClass({
              );
     }
 });
-module.exports =  TodoList;
+
+/*Connect lets us specify which pieces of state we want in this component
+*first arg is the pieces of state we need
+*/
+export default connect(
+  (state) => {
+    return {
+      todos: state.todos
+    };
+  }
+)(TodoList);

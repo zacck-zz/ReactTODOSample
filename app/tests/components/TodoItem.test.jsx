@@ -6,7 +6,7 @@ var $ = require('jQuery');
 var TestUtils = require('react-addons-test-utils')
 
 //actual component we need to render
-var TodoItem = require('TodoItem');
+var {TodoItem} = require('TodoItem');
 
 //Perform assertions
 describe('TodoItem', () =>{
@@ -16,7 +16,7 @@ describe('TodoItem', () =>{
   });
 
   //other tests
-  it('should call onToggle prop with id on click', () => {
+  it('should dispatch toggleTodo on click', () => {
     var todoData = {
       id: 199,
       text: 'write todo test jsx ',
@@ -24,12 +24,15 @@ describe('TodoItem', () =>{
     };
 
     var todoSpy = expect.createSpy();
-    var todo = TestUtils.renderIntoDocument(<TodoItem {...todoData} onToggle={todoSpy}/>);
+    var todo = TestUtils.renderIntoDocument(<TodoItem {...todoData} dispatch={todoSpy}/>);
 
     //simulate click
     var $element = $(ReactDOM.findDOMNode(todo));
     TestUtils.Simulate.click($element[0]);
-    expect(todoSpy).toHaveBeenCalledWith(199);
+    expect(todoSpy).toHaveBeenCalledWith({
+      type: 'TOGGLE_TODO',
+      id: todoData.id
+    });
   })
 
 
