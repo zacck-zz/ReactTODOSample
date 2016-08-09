@@ -6,7 +6,7 @@ var moment = require('moment')
 
 //modules we need
 import TodoList from 'TodoList';
-var AddTodo = require('AddTodo');
+import AddTodo from 'AddTodo';
 var TodoSearch = require('TodoSearch');
 var TodoAPI = require('TodoApi')
 
