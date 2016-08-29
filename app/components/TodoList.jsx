@@ -3,11 +3,13 @@ var React = require('react');
 var {connect} = require('react-redux');
 //modules needed
 import TodoItem from 'TodoItem';
+var TodoAPI = require('TodoAPI');
 
 export var TodoList = React.createClass({
     render: function() {
-      /*get the props passed in */
-      var {todos} = this.props;
+      /*Use state values*/
+      /*get the props passed in from state */
+      var {todos, showCompleted, searchText} = this.props;
 
       var renderTodos = () => {
         if(todos.length === 0){
@@ -15,7 +17,7 @@ export var TodoList = React.createClass({
             <p className="container__message">Nothing to Do </p>
           );
         }
-        return todos.map((todo) =>{
+        return TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) =>{
           return(
             /*Passing an array item to a list*/
             /*Remember to pass a key when dealing with lists ... << the spread operator*/
@@ -36,8 +38,6 @@ export var TodoList = React.createClass({
 */
 export default connect(
   (state) => {
-    return {
-      todos: state.todos
-    };
+    return state;
   }
 )(TodoList);

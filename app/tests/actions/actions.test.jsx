@@ -1,24 +1,22 @@
-//for assertions
-var expect = require ('expect');
-
+var expect = require('expect');
 var actions = require('actions');
 
 describe('Actions', () => {
-
-  it('should generete search text action',() => {
+  it('should generate search text action', () => {
     var action = {
       type: 'SET_SEARCH_TEXT',
-      searchText: 'sometext'
+      searchText: 'dog'
     };
+
     var res = actions.setSearchText(action.searchText);
 
     expect(res).toEqual(action);
   });
 
-  it('should generate addtodo action', () => {
+  it('should generate add todo action', () => {
     var action = {
-      type:'ADD_TODO',
-      text: 'Test this action'
+      type: 'ADD_TODO',
+      text: 'todo'
     };
 
     var res = actions.addTodo(action.text);
@@ -26,23 +24,24 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
-  it('should generate showCompleted Action', () => {
-    var action = {
-      type: 'TOGGLE_SHOW_COMPLETED',
-    }
 
-    var res = actions.toggleShowCompleted(action.checked);
+  it('should generate add toggle show completed action', () => {
+    var action = {
+      type: 'TOGGLE_SHOW_COMPLETED'
+    };
+
+    var res = actions.toggleShowCompleted();
 
     expect(res).toEqual(action);
   });
 
-  it('should generate toggleTodo Action', () => {
+  it('should generate toggle todo action', () => {
     var action = {
-      type: 'TOGGLE_TODO',
-      id: 2
+      type:'TOGGLE_TODO',
+      id: 1
     };
 
     var res = actions.toggleTodo(action.id);
     expect(res).toEqual(action);
-  });
+  })
 })
