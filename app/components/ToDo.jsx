@@ -8,7 +8,7 @@ var moment = require('moment')
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
 import  TodoSearch from 'TodoSearch';
-var TodoAPI = require('TodoApi')
+var TodoAPI = require('TodoAPI')
 
 //actual component
 var ToDo = React.createClass({

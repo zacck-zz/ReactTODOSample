@@ -19,28 +19,23 @@ module.exports = {
 
     }
     //turnary operator
-    return $.isArray(todos) ? todos :[]
+    return $.isArray(todos) ? todos :[];
   },
   filterTodos: function(todos, showCompleted, searchText) {
     var filteredTodos = todos;
+
+    //Filter by searchText
+    filteredTodos = filteredTodos.filter((todoitem) => {
+      var text = todoitem.text.toLowerCase();
+      return searchText.length === 0 || text.indexOf(searchText) > -1;
+    });
 
     //Filterby showCompleted
     filteredTodos = filteredTodos.filter((todoitem) => {
       return !todoitem.completed || showCompleted;
     });
 
-    //Filter by searchText
-    filteredTodos = filteredTodos.filter((todoitem) => {3
-      if(!searchText.length == 0) {
-        if(todoitem.text.toLowerCase().indexOf(searchText) !=  -1){
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return true;
-      }
-    });
+
 
     //sort to dos by non completed
     //use sort method

@@ -24,7 +24,7 @@ export var todosReducer = (state = [], action) => {
       return [
         ...state,
         {
-          ud: uuid(),
+          id: uuid(),
           text: action.text,
           completed: false,
           createdAt: moment().unix(),
@@ -35,12 +35,13 @@ export var todosReducer = (state = [], action) => {
       return state.map((todo) => {
         if(todo.id === action.id) {
           var nextCompleted = !todo.completed;
-
           return {
             ...todo,
             completed: nextCompleted,
             completedAt: nextCompleted ? moment().unix() : undefined
           };
+        } else {
+          return todo;
         }
       });
     default:

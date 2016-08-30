@@ -17,12 +17,7 @@ store.subscribe(() => {
   console.log('New State', store.getState());
 })
 
-//lets do some example actions
-store.dispatch(actions.addTodo('Clean the Desktop'));
 
-store.dispatch(actions.setSearchText('Desktop'));
-
-store.dispatch(actions.toggleShowCompleted());
 //Load Foundation
 $(document).foundation();
 

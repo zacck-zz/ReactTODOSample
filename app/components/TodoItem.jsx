@@ -3,7 +3,7 @@ var moment = require('moment');
 //load connect
 var {connect} = require('react-redux');
 //load actions
-var actions= require('actions');
+var actions = require('actions');
 
 export var TodoItem = React.createClass({
     render: function() {
@@ -23,7 +23,7 @@ export var TodoItem = React.createClass({
       return(
                <div className={todoClassName} onClick={() => {
                    //this.props.onToggle(id);
-                   dispatch(actions.toggleTodo(id));
+                   dispatch(actions.toggleTodo(id, !completed));
                  }}>
                 <div>
                    <input type="checkbox" checked={completed}/>
