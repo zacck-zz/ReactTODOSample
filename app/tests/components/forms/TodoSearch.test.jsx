@@ -29,7 +29,7 @@ it('should dispatch setSearchText on input change', () => {
   /*change text an use syp*/
   todosearch.refs.searchText.value = searchText;
   TestUtils.Simulate.change(todosearch.refs.searchText);
-  expect(searchSpy).toHaveBeenCalledWith();
+  expect(searchSpy).toHaveBeenCalledWith(action);
 });
 
 it('should dispatch TOGGLE_SHOW_COMPLETED when checkbox checked', () => {

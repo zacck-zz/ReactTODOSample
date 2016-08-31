@@ -34,7 +34,7 @@ export var TodoList = React.createClass({
 });
 
 /*Connect lets us specify which pieces of state we want in this component
-*first arg is the pieces of state we need
+*return the pieces of state we need
 */
 export default connect(
   (state) => {
