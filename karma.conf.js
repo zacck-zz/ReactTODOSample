@@ -4,9 +4,10 @@ module.exports = function (config) {
     browsers: ['Chrome'], //browers to use for testng
     singleRun: true,
     frameworks: ['mocha'], //frameworks used in testing
-    files: ['app/tests/**/*.test.jsx',
-    'node_modules/script!jquery/dist/jquery.min.js',
-    'node_modules/script!foundation-sites/dist/foundation.min.js',
+    files: [
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/foundation-sites/dist/foundation.min.js',
+    'app/tests/**/*.test.jsx'
     ], //globbing pattern
     preprocessors: { //what preprocessors to use
       'app/tests/**/*.test.jsx':['webpack', 'sourcemap']
