@@ -26,24 +26,70 @@ firebaseRef.set({
 
 });
 
-var userData = (snapshot) => {
-  console.log('user Value', snapshot.val());
-}
+var notesRef = firebaseRef.child('notes');
 
-firebaseRef.child('user').on('value',  userData);
-
-
-firebaseRef.child('user').update({
-  name: 'name after listener'
+//addnew item to set
+var newNoteRef = notesRef.push({
+  text:'this is the new age!'
 });
 
-firebaseRef.child('user').update({
-  name: 'final name'
+//listen for new items to the set
+// notesRef.on('child_added', (snapshot) =>{
+//   console.log('child_added', snapshot.key, snapshot.val());
+// });
+//
+// notesRef.on('child_changed', (snapshot) =>{
+//   console.log('child_changed', snapshot.key, snapshot.val());
+// });
+//
+// notesRef.on('child_removed', (snapshot) =>{
+//   console.log('child_removed', snapshot.key, snapshot.val());
+// });
+
+var todosRef = firebaseRef.child('todos');
+
+todosRef.on('child_added', (snapshot) => {
+  console.log('todo_added', snapshot.key, snapshot.val());
 });
 
-firebaseRef.child('app').update({
-  name: 'This is an updating app'
+
+todosRef.push({
+  text: 'new todo'
+
 });
+
+todosRef.push({
+  text: 'another new todo'
+});
+
+todosRef.push({
+  text: 'older new todo'
+});
+
+
+
+
+
+
+
+// var userData = (snapshot) => {
+//   console.log('user Value', snapshot.val());
+// }
+//
+// firebaseRef.child('user').on('value',  userData);
+//
+//
+// firebaseRef.child('user').update({
+//   name: 'name after listener'
+// });
+//
+// firebaseRef.child('user').update({
+//   name: 'final name'
+// });
+//
+// firebaseRef.child('app').update({
+//   name: 'This is an updating app'
+// });
 
 
 //fetch data
