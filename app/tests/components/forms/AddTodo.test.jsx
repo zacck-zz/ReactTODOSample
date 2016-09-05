@@ -5,8 +5,10 @@ var expect = require('expect');
 var $ = require('jQuery');
 var TestUtils = require('react-addons-test-utils')
 
+import * as actions from 'actions';
 //actual component we need to render
 var {AddTodo} = require('AddTodo');
+
 
 //Perform assertions
 describe('AddTodo', () =>{
@@ -21,10 +23,7 @@ it('should dispatch addTodo when valid todoText', () =>{
 
   var todoSpy = expect.createSpy();
   var tdtext = 'my todo';
-  var action = {
-    type: 'ADD_TODO',
-    text: tdtext
-  };
+  var action = actions.startAddTodo(tdtext);
 
   /*render component*/
   var addtodo = TestUtils.renderIntoDocument(<AddTodo dispatch={todoSpy}/>);
