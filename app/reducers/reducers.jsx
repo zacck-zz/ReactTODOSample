@@ -30,16 +30,18 @@ export var todosReducer = (state = [], action) => {
         ...state,
         ...action.todos
       ];
-    case 'TOGGLE_TODO':
+    case 'UPDATE_TODO':
       return state.map((todo) => {
         if(todo.id === action.id) {
-          var nextCompleted = !todo.completed;
-          return {
-            ...todo,
-            completed: nextCompleted,
-            completedAt: nextCompleted ? moment().unix() : undefined
-          };
-        } else {
+            return {
+              /*when we use two spread operators in a row
+              the values in the second operator will override the ones
+              in the second one*/
+              ...todo,
+              ...action.updates
+            }
+          }
+         else {
           return todo;
         }
       });
