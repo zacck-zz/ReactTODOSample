@@ -69,7 +69,7 @@ export var startToggleTodo  = (id, completed) => {
     /*generate Updates*/
     var updates = {
       completed,
-      completedAt: completed ? moment.unix() : null
+      completedAt: completed ? moment().unix() : null
     };
 
     /*start updating*/

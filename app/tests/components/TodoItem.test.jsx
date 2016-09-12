@@ -3,10 +3,11 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var expect = require('expect');
 var $ = require('jQuery');
+import * as actions from 'actions';
+//actual component we need to render
+import {TodoItem} from 'TodoItem';
 var TestUtils = require('react-addons-test-utils')
 
-//actual component we need to render
-var {TodoItem} = require('TodoItem');
 
 //Perform assertions
 describe('TodoItem', () =>{
@@ -23,16 +24,16 @@ describe('TodoItem', () =>{
       completed: true
     };
 
+    //create action
+    var action = actions.startToggleTodo(todoData.id, !todoData.completed)
+
     var todoSpy = expect.createSpy();
     var todo = TestUtils.renderIntoDocument(<TodoItem {...todoData} dispatch={todoSpy}/>);
 
     //simulate click
     var $element = $(ReactDOM.findDOMNode(todo));
     TestUtils.Simulate.click($element[0]);
-    expect(todoSpy).toHaveBeenCalledWith({
-      type: 'TOGGLE_TODO',
-      id: todoData.id
-    });
+    expect(todoSpy).toHaveBeenCalledWith(action);
   })
 
 

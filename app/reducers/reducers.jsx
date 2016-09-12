@@ -39,7 +39,7 @@ export var todosReducer = (state = [], action) => {
               in the second one*/
               ...todo,
               ...action.updates
-            }
+            };
           }
          else {
           return todo;
