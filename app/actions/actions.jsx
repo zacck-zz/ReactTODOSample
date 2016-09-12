@@ -47,6 +47,29 @@ export var addTodos = (todos) => {
   };
 }
 
+export var startAddTodos =  () => {
+  /*fetch todos from firebase*/
+  return(dispatch, state) => {
+    var todosRef = firebaseRef.child('todos');
+
+    return todosRef.once('value').then((snapshot) => {
+      //get data from firebase
+      var todos = snapshot.val() || {};
+      var parsedTodos = [];
+
+      /*Convert todos JSON Object to Array*/
+      Object.keys(todos).forEach((todoId) => {
+        parsedTodos.push({
+          id: todoId,
+          ...todos[todoId]
+        });
+      });
+      /*Update Redux Store*/
+      dispatch(addTodos(parsedTodos));
+    })
+  };
+}
+
 export var toggleShowCompleted = () => {
   return {
     type: 'TOGGLE_SHOW_COMPLETED'
