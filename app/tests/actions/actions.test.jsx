@@ -97,18 +97,27 @@ describe('Actions', () => {
   describe('Tests with firebase todos',  () => {
     var testTodoRef;
 
+    var testTodo = {
+      text: 'something to do',
+      completed: false,
+      createdAt: 76836213
+    }
+
     /*beforeEach is a mocha function that enables use to run
     some code before a test
     We can use this to add a couple of todos to firebase for testing
     */
     beforeEach((done) => {
-      testTodoRef = firebaseRef.child('todos').push();
-
-      testTodoRef.set({
-        text: 'something to do',
-        completed: false,
-        createdAt: 76836213
-      }).then(() => done());
+      //get a reference to the todos
+      var todosRef = firebaseRef.child('todos');
+      //wipe all todos
+      todosRef.remove().then(() => {
+        //create a sample todo
+        testTodoRef = firebaseRef.child('todos').push();
+        //Load the todo with a payload
+        return testTodoRef.set(testTodo);
+      }).then(() => done())
+      .catch(done);
     });
 
     /*After Each gets fired after every single test case
@@ -137,6 +146,31 @@ describe('Actions', () => {
         });
 
         expect(mockactions[0].updates.completedAt).toExist();
+        done();
+      }, done());
+    });
+
+
+    it('should bootstrap app with todos from firebase', (done) => {
+      //lets make a mock store
+      const store = createMockStore({});
+
+      const action = actions.startAddTodos();
+
+      //lets make our mock store call the bootstrapping action
+      store.dispatch(action).then(() => {
+        const mockactions = store.getActions();
+
+        //check that add todos action is called with todos
+        expect(mockactions[0].toInclude({
+          type: 'ADD_TODOS',
+          todos
+        }));
+
+        //check the first todo is the one we added when starting tests
+        expect(mockactions[0].todos[0]).toInclude(testTodo);
+
+        //call done
         done();
       }, done());
     });

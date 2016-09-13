@@ -12,12 +12,13 @@ export var TodoList = React.createClass({
       var {todos, showCompleted, searchText} = this.props;
 
       var renderTodos = () => {
-        if(todos.length === 0){
+        var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
+        if(filteredTodos.length === 0 ){
           return (
             <p className="container__message">Nothing to Do </p>
           );
         }
-        return TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) =>{
+        return filteredTodos.map((todo) =>{
           return(
             /*Passing an array item to a list*/
             /*Remember to pass a key when dealing with lists ... << the spread operator*/
