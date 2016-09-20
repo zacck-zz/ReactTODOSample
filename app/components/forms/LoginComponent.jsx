@@ -1,6 +1,13 @@
-var React = require('react');
+import React from 'react';
+import * as Redux  from 'react-redux';
+import * as actions from 'actions';
+
 
 var LoginComponent = React.createClass({
+    onLogin() {
+      var {dispatch} = this.props;
+      dispatch(actions.startLogin());
+    },
     render: function() {
        return(
                <div>
@@ -10,7 +17,7 @@ var LoginComponent = React.createClass({
                      <div className="callout callout-auth">
                        <h3>Login</h3>
                        <p> Login with Github account below.</p>
-                       <button className="button"> Login With Github</button>
+                       <button className="button" onClick={this.onLogin}> Login With Github</button>
                      </div>
                    </div>
                  </div>
@@ -19,4 +26,4 @@ var LoginComponent = React.createClass({
              );
     }
 });
-module.exports =  LoginComponent;
+export default Redux.connect()(LoginComponent);

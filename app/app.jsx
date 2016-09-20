@@ -6,9 +6,8 @@ var {Provider} = require('react-redux');
 //ES6 Destructuting syntax
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 //add components
-var ToDo = require('ToDo');
-var LoginComponent = require('LoginComponent');
-
+import ToDo from 'Todo';
+import LoginComponent from 'LoginComponent';
 //load actions
 var actions = require('actions');
 //load store this is the current state of the application

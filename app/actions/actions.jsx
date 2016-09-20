@@ -1,5 +1,5 @@
 //import firebase and dbRef
-import  firebase, {firebaseRef} from 'app/firebase/index';
+import  firebase, {firebaseRef, githubProvider} from 'app/firebase/index';
 import moment from 'moment';
 
 
@@ -102,3 +102,21 @@ export var startToggleTodo  = (id, completed) => {
 
   };
 };
+
+export var startLogin = () => {
+  return(dispatch, state) => {
+    return firebase.auth().signInWithPopup(githubProvider).then((result) => {
+      console.log('Auth Worked', result)
+    }, (error) => {
+      console.log('auth failed', error)
+    });
+  };
+}
+
+export var startLogout = () => {
+  return(dispatch, state) => {
+    return firebase.auth().signOut().then(() => {
+      console.log('Logged Out');
+    });
+  };
+}

@@ -11,8 +11,7 @@ var configureStore = require('configureStore');
 
 import TodoList from 'TodoList';
 //actual component we need to render
-var ToDo = require('ToDo');
-
+import {ToDo} from 'ToDo';
 //Perform assertions
 describe('ToDo', () =>{
 
