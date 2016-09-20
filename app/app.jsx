@@ -7,6 +7,7 @@ var {Provider} = require('react-redux');
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 //add components
 var ToDo = require('ToDo');
+var LoginComponent = require('LoginComponent');
 
 //load actions
 var actions = require('actions');
@@ -36,7 +37,10 @@ require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
   <Provider store={store}>
-    <ToDo/>
+    <Router history={hashHistory}>
+      <Route path="/" component={LoginComponent}/>
+      <Route path="todos" component={ToDo}/>
+    </Router>
   </Provider>,
   document.getElementById('app')
 );
