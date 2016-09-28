@@ -6,6 +6,29 @@ var df = require('deep-freeze-strict');
 var reducers = require('reducers');
 
 describe('Reducers', () => {
+  describe('AuthReducer', () => {
+    it('should set uid on login', () => {
+      var action = {
+        type: 'LOGIN',
+        uid: '1234'
+      };
+
+      var res = reducers.authReducer(df(''), df(action));
+
+      expect(res).toEqual(action.uid);
+    });
+
+    it('should unset uid on logout', () => {
+      var action = {
+        type: 'LOGOUT'
+      };
+
+      var res = reducers.authReducer(df('1234'), df(action));
+
+      expect(res).toEqual(null);
+    });
+  });
+
   describe('searchTextReducer', () => {
     it('should set Search text', ()=> {
       var action = {

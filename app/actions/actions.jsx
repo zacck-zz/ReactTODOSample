@@ -103,6 +103,15 @@ export var startToggleTodo  = (id, completed) => {
   };
 };
 
+//sync actions
+export var login = (uid) => {
+  return {
+    type:'LOGIN',
+    uid
+  };
+}
+
+
 export var startLogin = () => {
   return(dispatch, state) => {
     return firebase.auth().signInWithPopup(githubProvider).then((result) => {
@@ -110,6 +119,12 @@ export var startLogin = () => {
     }, (error) => {
       console.log('auth failed', error)
     });
+  };
+}
+
+export var logout = () => {
+  return {
+    type:'LOGOUT'
   };
 }
 

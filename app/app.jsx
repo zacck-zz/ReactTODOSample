@@ -18,9 +18,11 @@ import firebase from 'app/firebase';
 firebase.auth().onAuthStateChanged((user)=> {
   /*If User arg is present someone logged in if absent someone logged out*/
   if(user) {
+    store.dispatch(actions.login(user.uid));
     /*update url by using hashHistory*/
     hashHistory.push('/todos'); //lets us swap out the url with something new
   } else {
+    store.dispatch(actions.logout());
     hashHistory.push('/');
   }
 });
