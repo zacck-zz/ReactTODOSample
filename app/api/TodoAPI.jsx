@@ -6,7 +6,7 @@ module.exports = {
     //Filter by searchText
     filteredTodos = filteredTodos.filter((todoitem) => {
       var text = todoitem.text.toLowerCase();
-      return searchText.length === 0 || text.indexOf(searchText) > -1;
+      return searchText.length === 0 || text.indexOf(searchText.toLowerCase()) > -1;
     });
 
     //Filterby showCompleted
