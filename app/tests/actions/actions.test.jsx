@@ -81,21 +81,7 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
-  it('should create todo and dispatch ADD_TODO', (done) => {
-      const store = createMockStore({});
-      const todoText = 'My todo item';
 
-      store.dispatch(actions.startAddTodo(todoText)).then(() => {
-        const actions = store.getActions();
-        expect(actions[0]).toInclude({
-          type: 'ADD_TODO'
-        });
-        expect(actions[0].todo).toInclude({
-          text: todoText
-        });
-        done();
-      }).catch(done);
-    });
 
 
   it('should generate addTodos action object', () => {
@@ -140,6 +126,9 @@ describe('Actions', () => {
   });
 
   describe('Tests with firebase todos',  () => {
+
+    var uid;
+    var todosRef;
     var testTodoRef;
 
     var testTodo = {
@@ -153,15 +142,17 @@ describe('Actions', () => {
     We can use this to add a couple of todos to firebase for testing
     */
     beforeEach((done) => {
-      //get a reference to the todos
-      var todosRef = firebaseRef.child('todos');
-      //wipe all todos
-      todosRef.remove().then(() => {
-        //create a sample todo
-        testTodoRef = firebaseRef.child('todos').push();
-        //Load the todo with a payload
-        return testTodoRef.set(testTodo);
-      }).then(() => done())
+      //SIGN IN ANON
+      firebase.auth().signInAnonymously().then((user) => {
+        uid = user.uid;
+        todosRef = firebaseRef.child(`users/${uid}/todos`);
+
+        return todosRef.remove();
+      }).then(() => {
+        testTodoRef = todosRef.push();
+        return testTodoRef.set(testTodo)
+      })
+      .then(() => done())
       .catch(done);
     });
 
@@ -169,12 +160,12 @@ describe('Actions', () => {
     We can use this to delete data from the database that we just created in the beforeEach case
     */
     afterEach((done) => {
-      testTodoRef.remove().then(() => done());
+      todosRef.remove().then(() => done());
     });
 
     it('should toggle todo and dispatch UPDATE_TODO action', (done) => {
       //make mock store
-      const store = createMockStore({});
+      const store = createMockStore({auth : {uid}});
 
       const action = actions.startToggleTodo(testTodoRef.key, true);
 
@@ -198,7 +189,7 @@ describe('Actions', () => {
 
     it('should bootstrap app with todos from firebase', (done) => {
       //lets make a mock store
-      const store = createMockStore({});
+      const store = createMockStore({auth : {uid}});
 
       const action = actions.startAddTodos();
 
@@ -219,6 +210,22 @@ describe('Actions', () => {
         done();
       }, done());
     });
+
+    it('should create todo and dispatch ADD_TODO', (done) => {
+      const store = createMockStore({auth : {uid}});
+        const todoText = 'My todo item';
+
+        store.dispatch(actions.startAddTodo(todoText)).then(() => {
+          const actions = store.getActions();
+          expect(actions[0]).toInclude({
+            type: 'ADD_TODO'
+          });
+          expect(actions[0].todo).toInclude({
+            text: todoText
+          });
+          done();
+        }).catch(done);
+      });
   });
 
 })
