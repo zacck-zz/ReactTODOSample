@@ -18,7 +18,11 @@ import firebase from 'app/firebase';
 firebase.auth().onAuthStateChanged((user)=> {
   /*If User arg is present someone logged in if absent someone logged out*/
   if(user) {
+    //do login to save user id on store
     store.dispatch(actions.login(user.uid));
+    //then pull owner todos
+    store.dispatch(actions.startAddTodos());
+
     /*update url by using hashHistory*/
     hashHistory.push('/todos'); //lets us swap out the url with something new
   } else {
@@ -26,7 +30,6 @@ firebase.auth().onAuthStateChanged((user)=> {
     hashHistory.push('/');
   }
 });
-store.dispatch(actions.startAddTodos());
 //Load Foundation
 $(document).foundation();
 //app css require

@@ -15,7 +15,7 @@ describe('Reducers', () => {
 
       var res = reducers.authReducer(df(''), df(action));
 
-      expect(res).toEqual(action.uid);
+      expect(res).toEqual({uid: action.uid});
     });
 
     it('should unset uid on logout', () => {
@@ -23,9 +23,9 @@ describe('Reducers', () => {
         type: 'LOGOUT'
       };
 
-      var res = reducers.authReducer(df('1234'), df(action));
+      var res = reducers.authReducer(df({uid:'ndsdnwd'}), df(action));
 
-      expect(res).toEqual(null);
+      expect(res).toEqual({});
     });
   });
 
