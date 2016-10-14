@@ -4,18 +4,22 @@ import * as Redux from 'react-redux';
 //modules we need
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
-import  TodoSearch from 'TodoSearch';
+import TodoSearch from 'TodoSearch';
 import * as actions from 'actions';
 
 //actual component
-export var ToDo = React.createClass({
+export class ToDo extends React.Component {
+  constructor (props) {
+    super(props);
+    this.onLogout = this.onLogout.bind(this);
+  }
   onLogout(e) {
     e.preventDefault();
     var {dispatch} = this.props;
 
     dispatch(actions.startLogout());
-  },
-  render: function() {
+  }
+  render() {
        return(
                <div>
                 <div className="page-actions">
@@ -34,5 +38,5 @@ export var ToDo = React.createClass({
                </div>
              );
     }
-});
+};
 export default Redux.connect()(ToDo);

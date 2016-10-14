@@ -1,12 +1,12 @@
-var React = require('react');
+import React from 'react'
 //goes with the provider
-var {connect} = require('react-redux');
+import {connect} from 'react-redux'
 //modules needed
 import TodoItem from 'TodoItem';
 var TodoAPI = require('TodoAPI');
 
-export var TodoList = React.createClass({
-    render: function() {
+export class TodoList extends React.Component {
+    render () {
       /*Use state values*/
       /*get the props passed in from state */
       var {todos, showCompleted, searchText} = this.props;
@@ -32,7 +32,7 @@ export var TodoList = React.createClass({
                </div>
              );
     }
-});
+};
 
 /*Connect lets us specify which pieces of state we want in this component
 *return the pieces of state we need

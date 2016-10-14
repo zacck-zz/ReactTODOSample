@@ -1,12 +1,11 @@
-var React = require('react');
-var moment = require('moment');
+import React from 'react'
+import moment from 'moment'
 //load connect
-var {connect} = require('react-redux');
+import {connect} from 'react-redux'
 //load actions
-var actions = require('actions');
-
-export var TodoItem = React.createClass({
-    render: function() {
+import * as actions from 'actions'
+export class TodoItem extends React.Component {
+    render() {
       var {text, id, completed, createdAt, completedAt, dispatch} = this.props;
       var todoClassName = completed ? 'todo todo-completed' : 'todo';
       var renderDate = () => {
@@ -35,6 +34,6 @@ export var TodoItem = React.createClass({
                </div>
              );
     }
-});
+};
 
 export default connect()(TodoItem);
