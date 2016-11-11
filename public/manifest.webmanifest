@@ -1,0 +1,8 @@
+{
+  "name":"TodoAPP",
+  "short_name": "ToDoA",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "A todo App with react"
+}
