@@ -2,10 +2,10 @@ import React from 'react';
 import * as Redux from 'react-redux';
 
 //modules we need
-import TodoList from 'TodoList';
-import AddTodo from 'AddTodo';
-import TodoSearch from 'TodoSearch';
-import * as actions from 'actions';
+import TodoList from 'components/TodoList';
+import AddTodo from 'components/forms/AddTodo';
+import TodoSearch from 'components/form/TodoSearch';
+import * as actions from 'actions/actions';
 
 //actual component
 export class ToDo extends React.Component {

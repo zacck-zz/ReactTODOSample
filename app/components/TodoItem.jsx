@@ -3,7 +3,7 @@ import moment from 'moment'
 //load connect
 import {connect} from 'react-redux'
 //load actions
-import * as actions from 'actions'
+import * as actions from 'actions/actions'
 export class TodoItem extends React.Component {
     render() {
       var {text, id, completed, createdAt, completedAt, dispatch} = this.props;
