@@ -18,22 +18,22 @@ module.exports = {
       filename: 'bundle.js'
     },
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.(js|jsx)$/,
           exclude: /(node_modules)/,
-          loaders: [
+          use: [
             'babel-loader'
           ],
-          query: { //parse the files through react
+          options: { //parse the files through react
             presets: ['react', 'es2015', 'stage-0']
           },
         },
       ],
     },
     resolve: {
-      extensions: ['','.js', '.jsx'],
-      alias: [
+      extensions: [".js", ".jsx"],
+      modules : [
         path.resolve('./app'),
         'node_modules'
       ]

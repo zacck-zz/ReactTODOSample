@@ -1,16 +1,16 @@
 //import react
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React,{Component} from 'react'
+import ReactDOM from 'react-dom'
 //Provider ..lets you provide your store to children components
-var {Provider} = require('react-redux');
-import {hashHistory} from 'react-router';
-
+import {Provider} from 'react-redux'
+import {hashHistory} from 'react-router'
 //load actions
-var actions = require('actions/actions');
-//load store this is the current state of the application
-var store = require('store/configureStore').configure();
+import * as actions from 'app/actions/actions'
 
-import router from 'router/';
+//load store this is the current state of the application
+var store = require('app/store/configureStore').configure();
+
+import router from 'app/router/';
 
 //Firebase auth checker
 import firebase from 'firebase/';
