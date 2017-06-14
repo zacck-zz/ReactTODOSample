@@ -31,9 +31,12 @@ firebase.auth().onAuthStateChanged((user)=> {
   }
 });
 //Load Foundation
-$(document).foundation();
+import 'script-loader!jquery'
+import 'script-loader!what-input'
+import 'script-loader!foundation-sites'
+
 //app css require
-require('style!css!sass!styles/app.scss');
+require('app/styles/app.scss');
 
 ReactDOM.render(
   <Provider store={store}>

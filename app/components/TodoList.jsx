@@ -2,8 +2,8 @@ import React from 'react'
 //goes with the provider
 import {connect} from 'react-redux'
 //modules needed
-import TodoItem from 'components/TodoItem';
-var TodoAPI = require('api/TodoAPI');
+import TodoItem from 'TodoItem';
+var TodoAPI = require('TodoAPI');
 
 export class TodoList extends React.Component {
     render () {
