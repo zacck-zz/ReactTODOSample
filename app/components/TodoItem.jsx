@@ -25,7 +25,7 @@ export class TodoItem extends React.Component {
                    dispatch(actions.startToggleTodo(id, !completed));
                  }}>
                 <div>
-                   <input type="checkbox" checked={completed}/>
+                   <input type="checkbox" defaultChecked={completed}/>
                 </div>
                 <div>
                   <p>{text}</p>
