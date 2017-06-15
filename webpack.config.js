@@ -26,10 +26,6 @@ module.exports = {
       path: __dirname + '/public',
       filename: 'bundle.js'
     },
-    externals: {
-      'jquery': 'jQuery',
-      foundation: 'Foundation'
-    },
     module: {
       rules: [
         {
