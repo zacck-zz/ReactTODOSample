@@ -10,7 +10,8 @@
     "start": " npm run build && node server.js"
   },
   "engines": {
-    "node": "6.2.0"
+    "node": ">=6.2.0",
+    "npm":">=5"
   },
   "author": "Zacck Osiemo",
   "license": "MIT",
