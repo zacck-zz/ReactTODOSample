@@ -1,7 +1,13 @@
 var webpackConfig = require('./webpack.config.js');
 module.exports = function (config) {
   config.set({
-    browsers: ['Chrome'], //browers to use for testng
+    browsers: ['Chrome'], //browers to use for testing
+    customLaunchers: {
+            Chrome_travis_ci: {
+                base: 'Chrome',
+                flags: ['--no-sandbox']
+            }
+        },
     singleRun: true,
     frameworks: ['mocha'], //frameworks used in testing
     files: [
@@ -23,4 +29,8 @@ module.exports = function (config) {
       noInfo: true
     }
   });
+  if(process.env.TRAVIS) {
+    configuration.browsers=['Chrome_travis_ci'];
+  }
+  config.set(configuration);
 }
