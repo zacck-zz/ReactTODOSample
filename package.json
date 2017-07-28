@@ -9,6 +9,9 @@
     "build": "webpack",
     "start": " npm run build && node server.js"
   },
+  "engines": {
+    "node": "6.2.0"
+  },
   "author": "Zacck Osiemo",
   "license": "MIT",
   "dependencies": {
