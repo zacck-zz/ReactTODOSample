@@ -1,6 +1,6 @@
 var webpackConfig = require('./webpack.config.js');
 module.exports = function (config) {
-  config.set({
+  const configuration = {
     browsers: ['Chrome'], //browers to use for testing
     customLaunchers: {
             Chrome_travis_ci: {
@@ -28,8 +28,9 @@ module.exports = function (config) {
     webpackServer: {
       noInfo: true
     }
-  });
+  };
   if(process.env.TRAVIS) {
     configuration.browsers=['Chrome_travis_ci'];
   }
+  config.set(configuration)
 }
