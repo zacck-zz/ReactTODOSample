@@ -12,8 +12,10 @@ module.exports = {
     devServer: {
       contentBase: './public',
       inline: true,
-      hot: true
+      stats: 'errors-only',
+      hot: true,
     },
+    stats: 'errors-only',
     devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map',
     context: __dirname + '/app',
     entry: [
