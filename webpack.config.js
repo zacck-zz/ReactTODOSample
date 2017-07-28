@@ -21,6 +21,9 @@ module.exports = {
       'script-loader!jquery/dist/jquery.min.js',
       'script-loader!foundation-sites/dist/foundation.min.js',
     ],
+    externals: {
+       jQuery: 'jQuery'
+     },
     output: {
       publicPath: '/',
       path: __dirname + '/public',
